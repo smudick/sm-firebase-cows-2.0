@@ -4,6 +4,18 @@ import apiKeys from '../apiKeys.json';
 const baseUrl = apiKeys.firebaseKeys.databaseURL;
 
 // STUDENTS: Refactor this to use new Promise syntax
-const getCows = () => axios.get(`${baseUrl}/cows.json`);
+const getAllCows = () => new Promise((resolve, reject) => {
+  axios.get(`${baseUrl}/cows.json`).then((response) => {
+    const demCows = response.data;
+    const cows = [];
 
-export default { getCows };
+    if (demCows) {
+      Object.keys(demCows).forEach((cowId) => {
+        cows.push(demCows[cowId]);
+      });
+    }
+    resolve(cows);
+  }).catch((error) => reject(error));
+});
+
+export default { getAllCows };
