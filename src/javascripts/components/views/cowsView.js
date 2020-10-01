@@ -1,8 +1,9 @@
-import cowData from '../../helpers/data/cowData';
+import mergedData from '../../helpers/data/mergedData';
 import card from '../cards/cowCard';
 
 const cowsView = () => {
-  cowData.getAllCows().then((response) => {
+  mergedData.getDataForCowsView().then((response) => {
+    console.warn(response);
     if (response.length) {
       response.forEach((item) => {
         $('#app').append(card.cowMaker(item));
