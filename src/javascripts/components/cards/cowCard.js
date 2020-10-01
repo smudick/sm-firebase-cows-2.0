@@ -9,6 +9,8 @@ const cowMaker = (cowObject) => {
                           Location: ${cowObject.location}<br />
                           Weight: ${cowObject.weight}<br />
                         </p>
+                        <a href='#' id="${cowObject.firebaseKey}"
+                        class="update-cow btn btn-info"><i class="far fa-edit"></i> Update Cow</a>
                         <a href="#" id="${cowObject.firebaseKey}" class="btn btn-danger delete-cow">Delete Cow</a>
                       </div>
                     </div>`;
