@@ -3,10 +3,9 @@ import card from '../cards/cowCard';
 
 const cowsView = () => {
   mergedData.getDataForCowsView().then((response) => {
-    console.warn(response);
     if (response.length) {
-      response.forEach((item) => {
-        $('#app').append(card.cowMaker(item));
+      response.forEach((cow) => {
+        $('#app').append(card.cowMaker(cow));
       });
     } else {
       $('#app').append('<h2>NO COWS</h2>');
