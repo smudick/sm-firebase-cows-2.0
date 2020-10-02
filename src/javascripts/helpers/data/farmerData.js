@@ -45,14 +45,6 @@ const checkIfFarmerExistsInFirebase = (farmer) => {
     .catch((error) => console.error(error));
 };
 
-const getSingleFarmer = (farmerUid) => new Promise((resolve, reject) => axios
-  .get(`${baseUrl}/farmers.json?orderBy="uid"&equalTo="${farmerUid}"`)
-  .then((response) => {
-    const farmer = Object.values(response.data);
-    const thisFarmer = farmer[0];
-    resolve(thisFarmer);
-  }).catch((error) => reject(error)));
-
 const setCurrentFarmer = (farmerObj) => {
   const farmer = {
     image: farmerObj.photoURL,
@@ -71,6 +63,14 @@ const setCurrentFarmer = (farmerObj) => {
   return farmer;
 };
 
+const getSingleFarmer = (farmerUid) => new Promise((resolve, reject) => axios
+  .get(`${baseUrl}/farmers.json?orderBy="uid"&equalTo="${farmerUid}"`)
+  .then((response) => {
+    const farmer = Object.values(response.data);
+    const thisFarmer = farmer[0];
+    resolve(thisFarmer);
+  }).catch((error) => reject(error)));
+
 const deleteFarmer = (farmerUid) => {
   cowData
     .getFarmerCows(farmerUid)
@@ -86,4 +86,9 @@ const deleteFarmer = (farmerUid) => {
     });
 };
 
-export default { setCurrentFarmer, getAllFarmers, deleteFarmer };
+export default {
+  setCurrentFarmer,
+  getAllFarmers,
+  deleteFarmer,
+  getSingleFarmer
+};
